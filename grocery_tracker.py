@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Burnaby Grocery Deal Tracker  v2.0
 ──────────────────────────────────
@@ -543,6 +543,7 @@ h1{{font-size:18px;font-weight:700;margin-bottom:2px}}
 <div class="mobile-cats">
   {cat_btns}
 </div>
+<div class="mobile-cats">{cat_btns}</div>
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-title">分類 Category</div>
@@ -765,3 +766,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
