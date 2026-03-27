@@ -1,0 +1,36 @@
+name: Update Grocery Deals
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run scraper
+        run: python grocery_tracker.py --no-ollama
+
+      - name: Move HTML to root
+        run: cp output/deals_report.html index.html
+
+      - name: Commit and push
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git add index.html
+          git diff --staged --quiet || git commit -m "Update deals $(date +'%Y-%m-%d')"
+          git push
