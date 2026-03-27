@@ -562,6 +562,8 @@ h1{{font-size:18px;font-weight:700;margin-bottom:2px}}
 </div>
 
 <script>
+function imgErr(el){{el.onerror=null;el.style.display='none';if(el.nextSibling)el.nextSibling.style.display='flex';}}
+function imgErrCart(el){{el.onerror=null;el.style.display='none';}}
 var DEALS = {deals_js};
 var COLORS = {store_color_js};
 var S = {{ q:'', store:'', cat:'全部 All', onSale:false, cart:{{}} }};
@@ -607,7 +609,7 @@ function render() {{
     var key=d.id+'|'+d.store;
     var inCart=!!S.cart[key];
     var rb=d.savings_pct?'<span class="ribbon">-'+d.savings_pct+'%</span>':'';
-    var img=d.image?'<img src="'+d.image+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'">':'';
+    var img=d.image?'<img src="'+d.image+'" alt="" loading="lazy" onerror="imgErr(this)">':'';
     var ph='<div class="img-placeholder" style="'+(d.image?'display:none':'')+'">&#128722;</div>';
     var zh=d.zh_label?'<div class="card-zh">'+d.zh_label+'</div>':'';
     var pr='<span class="card-price">$'+d.price.toFixed(2)+'</span>'+(d.unit?' <span class="card-unit">'+d.unit+'</span>':'');
@@ -657,7 +659,7 @@ function renderCart() {{
   items.forEach(function(d){{
     tp+=d.price; tr+=(d.original||d.price);
     var key=d.id+'|'+d.store;
-    var img=d.image?'<img class="cart-thumb" src="'+d.image+'" onerror="this.style.display=\'none\'">'
+    var img=d.image?'<img class="cart-thumb" src="'+d.image+'" onerror="imgErrCart(this)">'
                    +'<div class="cart-thumb">&#128722;</div>'
                    :'<div class="cart-thumb">&#128722;</div>';
     h+='<div class="cart-item">'+img
