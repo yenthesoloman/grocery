@@ -501,12 +501,21 @@ h1{{font-size:18px;font-weight:700;margin-bottom:2px}}
             border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;
             display:flex;align-items:center;justify-content:center}}
 .footer{{text-align:center;color:#d1d5db;font-size:11px;margin-top:16px}}
-@media(max-width:860px){{.sidebar{{display:none}}}}
+@media(max-width:860px){{
+  .sidebar{{display:none}}
+  .mobile-cats{{display:flex}}
+}}
 @media(max-width:520px){{
   .cards-grid{{grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:8px}}
   .cart-panel{{width:100vw}}
   h1{{font-size:16px}}
 }}
+.mobile-cats{{display:none;overflow-x:auto;gap:6px;padding:8px 12px;
+  background:#fff;border-bottom:1px solid #e5e7eb;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none}}
+.mobile-cats::-webkit-scrollbar{{display:none}}
+.mobile-cats .cat-btn{{white-space:nowrap;flex-shrink:0;padding:6px 12px;
+  border-radius:20px;border:1px solid #d1d5db;background:#f9fafb;font-size:12px}}
 </style>
 </head>
 <body>
@@ -531,6 +540,9 @@ h1{{font-size:18px;font-weight:700;margin-bottom:2px}}
   </div>
 </div>
 
+<div class="mobile-cats">
+  {cat_btns}
+</div>
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-title">分類 Category</div>
